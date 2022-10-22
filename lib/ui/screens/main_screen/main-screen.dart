@@ -1,10 +1,9 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import '../../../data/network/film/film-api-service.dart';
 
 import '../../theme/colors.dart';
+import '../home_screen/home-screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -18,16 +17,13 @@ class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 0;
 
   static const List<Widget> _widgetOptions = <Widget>[
-    Text("Home"),
+    HomeScreen(),
     Text("Search"),
     Text("Watch list")
   ];
 
   @override
   Widget build(BuildContext context) {
-
-    // final filmApiService = Provider.of<FilmApiService>(context);
-
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
         unselectedItemColor: primaryText,

@@ -16,22 +16,22 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(
-          create: (BuildContext context) {
-            FilmApiService.create();
-          },
-        )
-      ],
+        providers: [
+          Provider(
+            create: (BuildContext context) => FilmApiService.create(),
+            dispose: (context, FilmApiService? service) => service?.client.dispose(),
+          )
+        ],
       child: MaterialApp(
         initialRoute: splashScreenRoute,
         theme: ThemeData(
             scaffoldBackgroundColor: primaryBackground
         ),
         routes: {
-          mainScreenRoute: (context) => const MainScreen(),
-          splashScreenRoute: (context) => const SplashScreen()
+          splashScreenRoute: (context) => const SplashScreen(),
+          mainScreenRoute: (context) => const MainScreen()
         },
       ),
     );
